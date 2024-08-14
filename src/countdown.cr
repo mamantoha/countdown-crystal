@@ -2,10 +2,15 @@
 class Countdown
   VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
+  # :nodoc
+  class Exception < Exception
+  end
+
   getter components : NamedTuple(years: Int32, months: Int32, days: Int32, hours: Int32, minutes: Int32, seconds: Int32)
 
   def initialize(start_time : Time, end_time : Time)
-    raise "Start should be before end time" if start_time > end_time
+    raise Exception.new("Start and end time must have the same Time::Location") if start_time.location != end_time.location
+    raise Exception.new("Start should be before end time") if start_time > end_time
 
     @components = calculate_difference(start_time, end_time)
   end
