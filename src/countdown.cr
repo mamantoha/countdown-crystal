@@ -17,7 +17,7 @@ class Countdown
 
   {% for component in ["years", "months", "days", "hours", "minutes", "seconds"] %}
     private def {{ component.id }}
-      component[:{{ component.id }}]
+      components[:{{ component.id }}]
     end
   {% end %}
 
