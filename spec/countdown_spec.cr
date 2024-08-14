@@ -163,7 +163,7 @@ describe Countdown do
       start_time = Time.local(2024, 1, 1)
       end_time = Time.local(2023, 1, 1)
 
-      countdown = Countdown.new(start_time, end_time)
+      Countdown.new(start_time, end_time)
     end
   end
 
@@ -172,7 +172,7 @@ describe Countdown do
       start_time = Time.local(2023, 1, 1, location: Time::Location.load("Europe/Kyiv"))
       end_time = Time.utc(2024, 1, 1)
 
-      countdown = Countdown.new(start_time, end_time)
+      Countdown.new(start_time, end_time)
     end
   end
 end
