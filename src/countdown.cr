@@ -38,7 +38,6 @@ class Countdown
     minutes = end_time.minute - start_time.minute
     seconds = end_time.second - start_time.second
 
-    # Adjust for timezone offset differences
     timezone_difference = (end_time.offset - start_time.offset) // 3600
     hours += timezone_difference
 
