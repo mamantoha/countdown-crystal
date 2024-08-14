@@ -1,5 +1,7 @@
 # Countdown
 
+[![Crystal CI](https://github.com/mamantoha/countdown-crystal/actions/workflows/crystal.yml/badge.svg?branch=main)](https://github.com/mamantoha/countdown-crystal/actions/workflows/crystal.yml)
+
 A simple Crystal library for calculating and producing an accurate, intuitive description of the timespan between two `Time` instances.
 
 ## Installation
