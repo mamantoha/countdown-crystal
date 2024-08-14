@@ -15,6 +15,12 @@ class Countdown
     @components = calculate_difference(start_time, end_time)
   end
 
+  {% for component in ["years", "months", "days", "hours", "minutes", "seconds"] %}
+    private def {{ component.id }}
+      component[:{{ component.id }}]
+    end
+  {% end %}
+
   private def calculate_difference(start_time : Time, end_time : Time)
     years = end_time.year - start_time.year
     months = end_time.month - start_time.month
@@ -57,12 +63,12 @@ class Countdown
   def to_s(*, oxford_comma = false, include_seconds = false) : String
     parts = [] of String
 
-    parts << "#{components[:years]} year#{'s' unless components[:years] == 1}" if components[:years] > 0
-    parts << "#{components[:months]} month#{'s' unless components[:months] == 1}" if components[:months] > 0
-    parts << "#{components[:days]} day#{'s' unless components[:days] == 1}" if components[:days] > 0
-    parts << "#{components[:hours]} hour#{'s' unless components[:hours] == 1}" if components[:hours] > 0
-    parts << "#{components[:minutes]} minute#{'s' unless components[:minutes] == 1}" if components[:minutes] > 0
-    parts << "#{components[:seconds]} second#{'s' unless components[:seconds] == 1}" if include_seconds && components[:minutes] > 0
+    parts << "#{years} year#{'s' unless years == 1}" if years > 0
+    parts << "#{months} month#{'s' unless months == 1}" if months > 0
+    parts << "#{days} day#{'s' unless days == 1}" if days > 0
+    parts << "#{hours} hour#{'s' unless hours == 1}" if hours > 0
+    parts << "#{minutes} minute#{'s' unless minutes == 1}" if minutes > 0
+    parts << "#{seconds} second#{'s' unless seconds == 1}" if include_seconds && minutes > 0
 
     if parts.size > 1
       last = parts.pop
