@@ -1,5 +1,7 @@
 # A simple Crystal API for producing an accurate, intuitive description of the timespan between two `Time` instances.
 class Countdown
+  VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
+
   getter components : NamedTuple(years: Int32, months: Int32, days: Int32, hours: Int32, minutes: Int32, seconds: Int32)
 
   def initialize(start_time : Time, end_time : Time)

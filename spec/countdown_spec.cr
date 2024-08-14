@@ -1,6 +1,10 @@
 require "./spec_helper"
 
 describe Countdown do
+  it "has version" do
+    Countdown::VERSION.should_not be_nil
+  end
+
   it "works" do
     start_time = Time.local(2022, 2, 24, 3, 40)
     end_time = Time.local(2024, 8, 14, 15, 55)
