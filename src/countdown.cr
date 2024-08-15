@@ -32,27 +32,27 @@ class Countdown
     timezone_difference = (end_time.offset - start_time.offset) // 3600
     hours += timezone_difference
 
-    if seconds < 0
+    if seconds.negative?
       seconds += 60
       minutes -= 1
     end
 
-    if minutes < 0
+    if minutes.negative?
       minutes += 60
       hours -= 1
     end
 
-    if hours < 0
+    if hours.negative?
       hours += 24
       days -= 1
     end
 
-    if days < 0
+    if days.negative?
       days += Time.days_in_month(start_time.year, start_time.month)
       months -= 1
     end
 
-    if months < 0
+    if months.negative?
       months += 12
       years -= 1
     end
@@ -63,12 +63,12 @@ class Countdown
   def to_s(*, oxford_comma = false, include_seconds = false) : String
     parts = [] of String
 
-    parts << "#{years} year#{'s' unless years == 1}" if years > 0
-    parts << "#{months} month#{'s' unless months == 1}" if months > 0
-    parts << "#{days} day#{'s' unless days == 1}" if days > 0
-    parts << "#{hours} hour#{'s' unless hours == 1}" if hours > 0
-    parts << "#{minutes} minute#{'s' unless minutes == 1}" if minutes > 0
-    parts << "#{seconds} second#{'s' unless seconds == 1}" if include_seconds && minutes > 0
+    parts << "#{years} year#{'s' unless years == 1}" if years.positive?
+    parts << "#{months} month#{'s' unless months == 1}" if months.positive?
+    parts << "#{days} day#{'s' unless days == 1}" if days.positive?
+    parts << "#{hours} hour#{'s' unless hours == 1}" if hours.positive?
+    parts << "#{minutes} minute#{'s' unless minutes == 1}" if minutes.positive?
+    parts << "#{seconds} second#{'s' unless seconds == 1}" if include_seconds && minutes.positive?
 
     if parts.size > 1
       last = parts.pop
