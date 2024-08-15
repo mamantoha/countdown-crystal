@@ -74,6 +74,7 @@ class Countdown
       last = parts.pop
 
       and_part = oxford_comma ? ", and" : " and"
+
       "#{parts.join(", ")}#{and_part} #{last}"
     else
       parts.join
