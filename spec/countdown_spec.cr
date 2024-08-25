@@ -175,4 +175,42 @@ describe Countdown do
       Countdown.new(start_time, end_time)
     end
   end
+
+  describe "#to_s" do
+    it "do not include seconds by default" do
+      start_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 0, second: 0)
+      end_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 1, second: 30)
+
+      countdown = Countdown.new(start_time, end_time)
+
+      countdown.to_s.should eq("1 minute")
+    end
+
+    it "include seconds" do
+      start_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 0, second: 0)
+      end_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 1, second: 30)
+
+      countdown = Countdown.new(start_time, end_time)
+
+      countdown.to_s(include_seconds: true).should eq("1 minute and 30 seconds")
+    end
+
+    it "do not include seconds with 0 seconds" do
+      start_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 0, second: 0)
+      end_time = Time.local(year: 2024, month: 1, day: 1, hour: 12, minute: 1, second: 0)
+
+      countdown = Countdown.new(start_time, end_time)
+
+      countdown.to_s(include_seconds: true).should eq("1 minute")
+    end
+
+    it "oxford comma" do
+      start_time = Time.local(year: 2024, month: 1, day: 1, hour: 12)
+      end_time = Time.local(year: 2024, month: 1, day: 2, hour: 14)
+
+      countdown = Countdown.new(start_time, end_time)
+
+      countdown.to_s(oxford_comma: true).should eq("1 day, and 2 hours")
+    end
+  end
 end

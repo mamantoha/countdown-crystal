@@ -68,7 +68,7 @@ class Countdown
     parts << "#{days} day#{'s' unless days == 1}" if days.positive?
     parts << "#{hours} hour#{'s' unless hours == 1}" if hours.positive?
     parts << "#{minutes} minute#{'s' unless minutes == 1}" if minutes.positive?
-    parts << "#{seconds} second#{'s' unless seconds == 1}" if include_seconds && minutes.positive?
+    parts << "#{seconds} second#{'s' unless seconds == 1}" if include_seconds && seconds.positive?
 
     if parts.size > 1
       last = parts.pop
